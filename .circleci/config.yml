@@ -1,17 +1,15 @@
 version: 2.1
-orbs:
-  node: circleci/node@1.1.6
+
 jobs:
-  build-and-test:
-    executor:
-      name: node/default
+  build:
+    docker:
+      - image: circleci/ruby:2.4-node
+
     steps:
-      - checkout
-      - node/with-cache:
-          steps:
-            - run: npm install
-            - run: npm test
-workflows:
-    build-and-test:
-      jobs:
-        - build-and-test
+      - run: sleep 5
+      # Produces >500kb of text, then sleep for 5s
+      - run: for i in {1..50000}; do  echo "ping ${i}"; done && sleep 5
+      # Produces >500kb of text, then sleep for 5s
+      - run: for i in {1..50000}; do  echo "ping ${i}"; done && sleep 5
+      # Produces >500kb of text, then sleep for 5s
+      - run: for i in {1..50000}; do  echo "ping ${i}"; done && sleep 5
