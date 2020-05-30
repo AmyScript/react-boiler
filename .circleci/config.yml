@@ -1,0 +1,15 @@
+version: 2.1
+
+jobs:
+  build:
+    docker:
+      - image: circleci/ruby:2.4-node
+
+    steps:
+      - run: sleep 5
+      # Produces >500kb of text, then sleep for 5s
+      - run: for i in {1..50000}; do echo "ping ${i}"; sleep 0.5; done && sleep 5
+      # Produces >500kb of text, then sleep for 5s
+      - run: for i in {1..50000}; do  echo "ping ${i}"; done && sleep 5
+      # Produces >500kb of text, then sleep for 5s
+      - run: for i in {1..50000}; do  echo "ping ${i}"; done && sleep 5
